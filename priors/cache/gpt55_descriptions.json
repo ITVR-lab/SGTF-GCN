@@ -1,0 +1,362 @@
+{
+  "0": {
+    "label_index": 0,
+    "class_name": "drink water",
+    "description": "Body parts: The hand, fingers, wrist, elbow, shoulder, neck, and head are actively involved. The torso may stabilize while the arm lifts a cup or bottle toward the mouth.\n\nMotion pattern: The arm follows a smooth upward and inward trajectory from a resting position to the face, with elbow flexion and slight wrist adjustment. The head may tilt slightly back as the object reaches the mouth, followed by a controlled return.\n\nInteraction context: The action is typically asymmetrical, with one hand holding the cup or bottle near the mouth. The object remains close to the face while the body maintains balance and orientation toward it.",
+    "model": "gpt-5.5"
+  },
+  "1": {
+    "label_index": 1,
+    "class_name": "eat meal or snack",
+    "description": "Body parts: The wrists, hands, elbows, and shoulders are most active, with one or both arms moving between the food source and the mouth. The head, neck, and upper spine may tilt slightly forward, while the jaw area is implied to engage during eating.\n\nMotion pattern: The hand follows a repeated lifting trajectory from table or lap level toward the mouth, usually with elbow flexion and slight shoulder flexion. Movements are rhythmic and intermittent, with brief pauses near the mouth before the hand lowers again.\n\nInteraction context: The action typically involves interaction with a small object such as food, a utensil, or a cup positioned in front of the torso. Motion may be asymmetric if one hand feeds the mouth while the other stabilizes a plate, bowl, or remains resting.",
+    "model": "gpt-5.5"
+  },
+  "2": {
+    "label_index": 2,
+    "class_name": "brushing teeth",
+    "description": "Body parts: The dominant shoulder, elbow, wrist, and hand are most active, with the hand positioned near the mouth and lower face. The head, neck, and jaw region remain relatively stable, while the opposite arm usually rests by the side or lightly supports the body.\n\nMotion pattern: The dominant forearm and wrist perform short, repetitive back-and-forth or small circular strokes near the mouth. Movements are rhythmic and localized, with slight elbow flexion-extension and minimal whole-body displacement.\n\nInteraction context: The hand interacts with an implied toothbrush held close to the teeth, maintaining a consistent spatial relationship with the mouth. The action is typically asymmetric, dominated by one arm, while the torso stays upright and mostly still.",
+    "model": "gpt-5.5"
+  },
+  "3": {
+    "label_index": 3,
+    "class_name": "brushing hair",
+    "description": "Body parts: The shoulder, elbow, wrist, and hand of the brushing arm are most active, with the hand positioned near the head and hair. The head and neck may tilt slightly while the opposite arm usually remains relaxed or helps steady the hair.\n\nMotion pattern: The active hand performs repeated strokes from the top or side of the head downward through the hair, driven by elbow flexion-extension and wrist adjustments. The motion is rhythmic and moderately paced, with small shoulder rotations guiding the brush path.\n\nInteraction context: The hand typically holds a brush or comb close to the scalp, maintaining consistent contact with the hair. The action is mostly unilateral and occurs near the upper body, with the brushing arm crossing or moving alongside the head depending on the hair region being brushed.",
+    "model": "gpt-5.5"
+  },
+  "4": {
+    "label_index": 4,
+    "class_name": "drop",
+    "description": "Body parts: The shoulders, elbows, wrists, and hands are most active, with the fingers/hand joints releasing an object. The trunk may lean slightly forward while the knees and hips provide minor stabilization.\n\nMotion pattern: The arm typically moves downward or forward-downward, followed by a brief opening or relaxation of the hand to let the object fall. The motion is short, controlled, and often ends with the hand paused near the release point.\n\nInteraction context: The action involves a hand-object interaction where the object separates from the hand and moves downward under gravity. The movement is usually asymmetric, dominated by one arm, with the body oriented toward the drop location.",
+    "model": "gpt-5.5"
+  },
+  "5": {
+    "label_index": 5,
+    "class_name": "pickup",
+    "description": "Body parts: The hips, knees, and ankles flex as the body lowers, while the spine and neck tilt forward toward the target. One or both shoulders extend downward, with the elbow bending and the wrist/hand reaching to grasp the object.\n\nMotion pattern: The movement follows a downward-and-forward trajectory into a crouch or bend, then reverses upward as the object is lifted. The rhythm is typically smooth and deliberate, with a brief pause at the grasp point.\n\nInteraction context: The hand moves toward an object located below waist level, often near the feet or on the ground. The action may be asymmetric if one arm reaches while the other stabilizes the body, with the torso leaning toward the object.",
+    "model": "gpt-5.5"
+  },
+  "6": {
+    "label_index": 6,
+    "class_name": "throw",
+    "description": "Body parts: The throwing-side shoulder, elbow, wrist, and hand are the primary active joints, with the trunk, hips, knees, and ankles contributing support and force generation. The non-throwing arm often counterbalances while the head and torso orient toward the target.\n\nMotion pattern: The motion typically begins with a wind-up as the arm moves backward and the torso rotates, followed by a rapid forward acceleration of the shoulder, elbow extension, and wrist snap. The movement travels from the lower body through the trunk to the arm, ending with a forward follow-through.\n\nInteraction context: The body is asymmetrical, with one arm leading the throw and the opposite side stabilizing or balancing. The hand interacts with an object briefly, releasing it forward toward a target or open space as the body weight shifts in the throwing direction.",
+    "model": "gpt-5.5"
+  },
+  "7": {
+    "label_index": 7,
+    "class_name": "sitting down",
+    "description": "Body parts: The hips, knees, and ankles are the primary active joints, with the pelvis and torso lowering together. The knees flex, the hips hinge backward, and the spine stays mostly upright with slight forward lean for balance.\n\nMotion pattern: The body descends smoothly from standing to seated, with the pelvis moving downward and slightly backward. The motion is controlled and decelerates near the end as the legs bend and the torso stabilizes.\n\nInteraction context: The movement is typically directed toward a chair, bench, or ground surface positioned behind or below the body. The action is largely symmetric across both legs, with possible arm movement for balance or reaching toward armrests.",
+    "model": "gpt-5.5"
+  },
+  "8": {
+    "label_index": 8,
+    "class_name": "standing up from sitting position",
+    "description": "Body parts: The hips, knees, ankles, and spine are the primary joints involved, with the thighs and lower legs generating extension to lift the body. The shoulders and arms may shift slightly forward or push from the thighs/seat for balance or assistance.\n\nMotion pattern: The torso leans forward from the seated posture, then the hips and knees extend upward in a coordinated rising trajectory. The movement is smooth and continuous, progressing from a low seated position to an upright standing posture.\n\nInteraction context: The body transitions away from contact with the chair or seat as the pelvis lifts and weight transfers onto both feet. The motion is generally symmetrical, with both legs supporting the rise and maintaining balance over the base of support.",
+    "model": "gpt-5.5"
+  },
+  "9": {
+    "label_index": 9,
+    "class_name": "clapping",
+    "description": "Body parts: Both shoulders, elbows, wrists, and hands are actively involved, with the arms positioned in front of the torso. The palms and fingers are the main contact points, while the upper body remains mostly stable.\n\nMotion pattern: The forearms and hands move inward toward the body’s midline, make brief contact, then separate outward in a repeated rhythmic cycle. The motion is typically quick, symmetrical, and concentrated in the horizontal plane in front of the chest.\n\nInteraction context: The two hands interact directly by striking palm-to-palm, creating a repeated contact-and-release pattern. The movement is bilaterally symmetric, with both arms mirroring each other around the centerline of the body.",
+    "model": "gpt-5.5"
+  },
+  "10": {
+    "label_index": 10,
+    "class_name": "reading",
+    "description": "Body parts: The head, neck, eyes, shoulders, elbows, wrists, and hands are most involved, with the spine and torso maintaining a seated or slightly forward-leaning posture. The hands may hold a book, paper, or device while the fingers stabilize or occasionally adjust the reading material.\n\nMotion pattern: Movement is generally slow and minimal, with small head tilts downward, subtle eye-scanning motions, and occasional hand or finger movements for page turning or scrolling. The torso remains mostly stable, with gentle forward flexion toward the object being read.\n\nInteraction context: The action typically involves close spatial interaction between the hands and a book, paper, or screen positioned in front of the upper body. The pose is mostly symmetrical in the torso and shoulders, though hand placement may be asymmetrical depending on how the reading object is held.",
+    "model": "gpt-5.5"
+  },
+  "11": {
+    "label_index": 11,
+    "class_name": "writing",
+    "description": "Body parts: The dominant hand, wrist, and fingers are most active, with the elbow and shoulder providing smaller positioning adjustments. The torso, head, and neck may lean slightly forward while the non-dominant hand may stabilize the paper or surface.\n\nMotion pattern: The writing hand performs small, repeated, fine-grained strokes with alternating wrist and finger motions, typically moving left-to-right or along short curved paths. The movement rhythm is steady and precise, with brief pauses between strokes or words.\n\nInteraction context: The action usually occurs near a table or writing surface, with the hand positioned close to an imagined pen and paper. The motion is asymmetrical, dominated by one arm, while the other arm remains relatively still or supports the writing area.",
+    "model": "gpt-5.5"
+  },
+  "12": {
+    "label_index": 12,
+    "class_name": "tear up paper",
+    "description": "Body parts: Both hands, wrists, elbows, and shoulders are actively engaged, with the fingers grasping the paper edges. The forearms and upper arms provide pulling force while the torso may stabilize the motion.\n\nMotion pattern: The hands move in opposite directions with short, forceful pulling motions, often starting close together near the chest or waist and separating outward. The wrists may twist or flex as the elbows bend and extend in a repeated tearing rhythm.\n\nInteraction context: The paper is held between both hands at the body’s front midline, creating a symmetrical two-handed interaction. The motion reflects direct object manipulation, with the hands applying opposing tension until the paper separates.",
+    "model": "gpt-5.5"
+  },
+  "13": {
+    "label_index": 13,
+    "class_name": "wear jacket",
+    "description": "Body parts: The shoulders, elbows, wrists, and hands are most active as the arms are guided into the jacket sleeves, with the torso and neck stabilizing posture. The upper back and shoulder joints rotate and abduct/adduct to position each arm correctly.\n\nMotion pattern: The hands move outward and backward or forward into the sleeves, followed by elbow extension and shoulder rotation as the jacket is pulled up over the arms. Movements are sequential and coordinated, often alternating between arms before both arms settle downward.\n\nInteraction context: The body interacts closely with a garment positioned around the torso and arms, with hands grasping or adjusting the jacket fabric. The motion is generally bilateral but may be asymmetric if one arm enters a sleeve before the other.",
+    "model": "gpt-5.5"
+  },
+  "14": {
+    "label_index": 14,
+    "class_name": "take off jacket",
+    "description": "Body parts: The shoulders, elbows, wrists, and hands are most active, with the arms moving backward, outward, and downward to free the sleeves. The torso and neck may slightly rotate or lean as each shoulder is pulled out of the jacket.\n\nMotion pattern: The motion typically begins with one hand grasping the jacket near the opposite cuff, collar, or shoulder, followed by a pulling action that slides one sleeve off the arm. The movement is sequential and asymmetric, often alternating between arms, with smooth backward arm extension and downward jacket removal.\n\nInteraction context: The hands interact closely with the jacket fabric, pulling it away from the shoulders and along the forearms. The action involves the garment surrounding the upper body, with one arm often stabilizing or tugging while the other arm retracts from the sleeve.",
+    "model": "gpt-5.5"
+  },
+  "15": {
+    "label_index": 15,
+    "class_name": "wear a shoe",
+    "description": "Body parts: The hands, wrists, and elbows move toward the foot, often with the torso bending forward and the neck/head angled downward to look at the shoe. One knee and hip are flexed to bring the foot closer, while the ankle and toes of that foot are adjusted into the shoe.\n\nMotion pattern: The action begins with a forward bend or leg lift, followed by both hands reaching down in a controlled, repetitive pulling or guiding motion around the heel and instep. Movements are small and precise, with brief pauses as the foot slides into place and the shoe is secured.\n\nInteraction context: The motion is asymmetric, focused on one foot while the other leg stabilizes the body, often in a seated or crouched posture. The hands interact closely with the shoe and foot, maintaining contact as they align, pull, or press the shoe onto the foot.",
+    "model": "gpt-5.5"
+  },
+  "16": {
+    "label_index": 16,
+    "class_name": "take off a shoe",
+    "description": "Body parts: The hips, knees, and ankles are actively involved as one leg lifts or bends to bring the foot within reach, while the spine may flex forward. The hands, wrists, elbows, and shoulders move toward the foot to grasp the shoe or heel area.\n\nMotion pattern: The motion typically begins with a forward trunk bend and knee lift or leg crossing, followed by both hands pulling the shoe backward or downward off the foot. Movements are controlled and asymmetrical, with small repeated tugs at the ankle and foot until the shoe separates.\n\nInteraction context: One foot remains grounded or supported for balance while the other foot is the target of manipulation. The hands interact directly with the shoe, maintaining close contact around the heel, laces, or opening as the shoe is removed from the foot.",
+    "model": "gpt-5.5"
+  },
+  "17": {
+    "label_index": 17,
+    "class_name": "wear on glasses",
+    "description": "Body parts: Both hands, wrists, elbows, and shoulders are active, with the fingers grasping the glasses near the temples. The head, neck, and upper torso remain relatively stable while the hands move toward the face.\n\nMotion pattern: The hands lift from the lower front of the body toward eye level in a smooth, coordinated upward-and-inward trajectory. The elbows flex and then slightly extend as the glasses are positioned on the bridge of the nose and over the ears.\n\nInteraction context: The motion is largely symmetric, with both hands working together on either side of the face. The object is aligned with the eyes, nose, and ears, indicating a precise hand-to-head interaction.",
+    "model": "gpt-5.5"
+  },
+  "18": {
+    "label_index": 18,
+    "class_name": "take off glasses",
+    "description": "Body parts: The hands, fingers, wrists, elbows, shoulders, neck, and head are actively involved. The fingers grasp the glasses at the temples while the arms lift and move outward from the face.\n\nMotion pattern: Both hands move upward toward the face, then pull the glasses forward and slightly outward before lowering or moving them away. The motion is smooth, coordinated, and moderately paced.\n\nInteraction context: The glasses begin on the face, aligned across the eyes and supported by the ears and nose. The action is typically symmetrical, with both hands interacting with the glasses on either side of the head.",
+    "model": "gpt-5.5"
+  },
+  "19": {
+    "label_index": 19,
+    "class_name": "put on a hat or cap",
+    "description": "Body parts: The shoulders, elbows, wrists, and hands are the primary active joints, with the neck and head involved as the target placement area. The torso may remain mostly upright while the head slightly tilts or stabilizes.\n\nMotion pattern: One or both arms lift from below chest level toward the top of the head, with elbows flexing and shoulders raising forward or outward. The hands move in a controlled upward arc, then slow as they place and adjust the hat or cap on the head.\n\nInteraction context: The hands interact with a hat or cap held near the body and guide it onto the crown of the head. The motion is often bilateral and roughly symmetrical, though one hand may lead while the other steadies or adjusts the object.",
+    "model": "gpt-5.5"
+  },
+  "20": {
+    "label_index": 20,
+    "class_name": "take off a hat or cap",
+    "description": "Body parts: The hand, wrist, elbow, and shoulder of one arm are primarily active, with fingers grasping the brim or crown of the hat. The head and neck may tilt slightly, while the torso remains mostly stable.\n\nMotion pattern: The hand moves upward toward the head, pauses briefly to secure the hat, then lifts it away in an upward and outward trajectory. The elbow flexes during the reach and extends slightly as the hat is removed from the head.\n\nInteraction context: The action involves direct interaction between the hand and the hat positioned on top of the head. It is typically asymmetric, with one arm performing the removal while the other arm remains relaxed or minimally involved.",
+    "model": "gpt-5.5"
+  },
+  "21": {
+    "label_index": 21,
+    "class_name": "cheer up",
+    "description": "Body parts: The shoulders, elbows, wrists, and hands are most active as both arms lift upward or pump in the air. The torso, hips, knees, and ankles may also engage to support bouncing or small jumps.\n\nMotion pattern: The arms move in an upward, energetic trajectory, often extending above the head and then lowering slightly in repeated celebratory pumps. The rhythm is quick and enthusiastic, with possible vertical bouncing through the knees and ankles.\n\nInteraction context: The motion is usually symmetric, with both arms moving together or alternating in a coordinated cheer gesture. The body remains upright and open, projecting excitement outward into the surrounding space.",
+    "model": "gpt-5.5"
+  },
+  "22": {
+    "label_index": 22,
+    "class_name": "hand waving",
+    "description": "Body parts: The primary joints involved are the shoulder, elbow, wrist, and hand of one or both arms, with the upper arm lifting and the forearm extending outward. The torso and head usually remain stable, often oriented toward the intended recipient.\n\nMotion pattern: The hand moves in a repeated side-to-side or up-and-down oscillation, driven mainly by wrist flexion/extension and slight elbow or shoulder motion. The rhythm is typically periodic and moderate in speed, with the palm facing outward.\n\nInteraction context: The waving hand is positioned away from the body, often above shoulder level or in front of the torso, creating a clear visual signal. The action is usually asymmetric when performed with one hand and directed toward another person or an imagined observer.",
+    "model": "gpt-5.5"
+  },
+  "23": {
+    "label_index": 23,
+    "class_name": "kicking something",
+    "description": "Body parts: The kicking leg is dominated by motion at the hip, knee, and ankle, with the foot acting as the striking end-effector. The support leg, pelvis, spine, and arms stabilize balance, with the arms often counter-swinging.\n\nMotion pattern: The kicking leg lifts and swings forward or outward from the hip, the knee flexing during preparation and extending sharply toward impact. The motion is brief and ballistic, followed by retraction of the foot and recovery of stance.\n\nInteraction context: The body weight shifts onto the support leg while the pelvis rotates slightly toward the target. The foot makes directed contact with an object or target area in front of or beside the body, producing an asymmetric lower-body action.",
+    "model": "gpt-5.5"
+  },
+  "24": {
+    "label_index": 24,
+    "class_name": "reach into pocket",
+    "description": "Body parts: The shoulder, elbow, wrist, and hand of one arm are the primary active joints, with the fingers implied to move toward or into the pocket area. The torso, hip, and pelvis may slightly rotate or lean, while the opposite arm remains relatively still.\n\nMotion pattern: The active arm moves downward and inward from a relaxed or raised position toward the side or front of the hip, with the elbow flexing and the wrist aligning to guide the hand into the pocket. The motion is usually smooth and purposeful, ending with a brief pause as the hand enters or searches inside the pocket.\n\nInteraction context: The hand approaches a pocket located on the same-side hip, thigh, or front waist area, creating close contact between the hand and clothing. The action is typically asymmetric, involving one arm while the body stabilizes around the pelvis and legs.",
+    "model": "gpt-5.5"
+  },
+  "25": {
+    "label_index": 25,
+    "class_name": "hopping one foot jumping",
+    "description": "Body parts: The active lower limb includes one hip, knee, ankle, and foot repeatedly flexing and extending to push off and land, while the opposite leg is lifted with the knee bent and foot off the ground. The pelvis, spine, shoulders, and arms help stabilize balance, with the arms often swinging or spreading slightly.\n\nMotion pattern: The body moves in short vertical jumps on a single supporting foot, with a rhythmic cycle of knee/ankle compression, upward push-off, brief airborne phase, and landing on the same foot. The trajectory is mostly up-and-down, sometimes with small forward, backward, or sideways displacement.\n\nInteraction context: The movement is strongly asymmetrical because one leg bears weight and performs the hopping while the other remains elevated for balance. There is no object interaction; the main spatial relationship is repeated contact between the same foot and the ground while the whole body maintains balance over a narrow support base.",
+    "model": "gpt-5.5"
+  },
+  "26": {
+    "label_index": 26,
+    "class_name": "jump up",
+    "description": "Body parts: The ankles, knees, and hips actively flex to prepare and then extend forcefully to propel the body upward, while the torso stays aligned and upright. The arms may swing upward from the shoulders with elbows slightly bent to assist lift and balance.\n\nMotion pattern: The movement follows a vertical trajectory, beginning with a brief downward crouch and transitioning into a rapid upward extension. The rhythm is explosive and coordinated, with both legs pushing off the ground nearly simultaneously before landing.\n\nInteraction context: The action is typically symmetrical, with both feet leaving and returning to the ground together. There is no object interaction, but the whole skeleton moves upward relative to the floor while maintaining balance around the body’s centerline.",
+    "model": "gpt-5.5"
+  },
+  "27": {
+    "label_index": 27,
+    "class_name": "make a phone call or answer phone",
+    "description": "Body parts: One hand and arm are dominant, with shoulder, elbow, wrist, and fingers actively involved as the hand moves toward the side of the head near the ear. The head and neck may slightly tilt or rotate toward the raised hand, while the torso remains mostly upright and stable.\n\nMotion pattern: The active arm lifts from a lower position toward the ear in a smooth, directed arc, with elbow flexion and wrist positioning to place the hand as if holding a phone. After reaching the ear, the hand stays near the head with small adjustments, sometimes followed by a lowering motion when the call ends.\n\nInteraction context: The action is asymmetric, with one side of the body primarily engaged while the opposite arm usually remains relaxed or performs minor balancing motions. The hand is positioned close to the ear and cheek, indicating interaction with an imagined or actual phone held between the palm/fingers and the side of the head.",
+    "model": "gpt-5.5"
+  },
+  "28": {
+    "label_index": 28,
+    "class_name": "playing with phone or tablet",
+    "description": "Body parts: The head, neck, and upper spine are typically inclined downward toward the hands, with both shoulders, elbows, wrists, and fingers actively involved. The elbows are often flexed near the torso while the wrists and fingers perform small precise tapping, swiping, or holding motions.\n\nMotion pattern: Movements are mostly low-amplitude and repetitive, with subtle finger and wrist actions directed toward a phone or tablet held in front of the body. The posture is relatively stable, with occasional small adjustments of the forearms, head angle, or device position.\n\nInteraction context: The hands are positioned close together around a small rectangular object, usually centered in front of the chest, lap, or face. The action is often symmetric when holding the device with both hands, but may become asymmetric when one hand supports the device and the other taps or swipes.",
+    "model": "gpt-5.5"
+  },
+  "29": {
+    "label_index": 29,
+    "class_name": "typing on a keyboard",
+    "description": "Body parts: The wrists, fingers, and elbows are the most active joints, with the shoulders and upper arms providing stable support. The torso remains upright or slightly leaned forward, while the head and neck are typically oriented toward the keyboard or screen.\n\nMotion pattern: The fingers perform rapid, small-amplitude flexion and extension movements, pressing keys in alternating bursts. The wrists make subtle lateral shifts and slight vertical adjustments, while the elbows stay mostly fixed with minimal repositioning.\n\nInteraction context: Both hands are positioned symmetrically or semi-symmetrically over the keyboard, interacting closely with a flat object surface. The motion is object-focused, with coordinated left-right hand activity occurring within a compact workspace in front of the body.",
+    "model": "gpt-5.5"
+  },
+  "30": {
+    "label_index": 30,
+    "class_name": "pointing to something with finger",
+    "description": "Body parts: The shoulder, elbow, wrist, and index finger of one arm are primarily engaged, with the upper arm lifting and the forearm extending outward. The torso, head, and gaze may orient toward the indicated target while the opposite arm remains relatively relaxed.\n\nMotion pattern: The pointing arm moves from a resting or bent position into a directed extension, with the elbow partially or fully straightening and the wrist/finger aligning toward a specific location. The motion is usually quick and deliberate, followed by a brief hold to maintain the pointing direction.\n\nInteraction context: The action is asymmetric, dominated by one arm projecting away from the body toward an external person, object, or location. The extended finger establishes a clear spatial line from the body to the target, often accompanied by head or torso alignment in the same direction.",
+    "model": "gpt-5.5"
+  },
+  "31": {
+    "label_index": 31,
+    "class_name": "taking a selfie",
+    "description": "Body parts: One arm is raised and extended forward or slightly upward, involving the shoulder, elbow, wrist, and hand holding the phone. The head, neck, torso, and opposite arm may adjust for framing or posing.\n\nMotion pattern: The arm moves outward and stabilizes, with small wrist and elbow adjustments to aim the camera. The head tilts or turns slightly toward the phone, followed by a brief still pose.\n\nInteraction context: The hand is positioned in front of the face at arm’s length, with the phone oriented back toward the person. The body may be slightly angled or asymmetrical, often with gaze directed at the phone screen.",
+    "model": "gpt-5.5"
+  },
+  "32": {
+    "label_index": 32,
+    "class_name": "check time from watch",
+    "description": "Body parts: The wrist wearing the watch, its forearm, elbow, and shoulder are the primary active joints, with the opposite hand sometimes remaining relaxed near the torso. The head, neck, and eyes orient toward the raised wrist.\n\nMotion pattern: One forearm bends upward at the elbow and rotates slightly inward so the watch face turns toward the face. The head tilts or lowers subtly, and the gaze fixes briefly on the wrist in a short, deliberate checking motion.\n\nInteraction context: The action is asymmetric, centered on one arm bringing the watch into the visual field while the rest of the body stays relatively stable. The wristwatch acts as the target object, positioned close to the upper torso or face for inspection.",
+    "model": "gpt-5.5"
+  },
+  "33": {
+    "label_index": 33,
+    "class_name": "rub two hands together",
+    "description": "Body parts: Both upper limbs are active, involving the shoulders, elbows, wrists, palms, and fingers. The elbows are typically flexed in front of the torso while the hands are brought together at chest or waist level.\n\nMotion pattern: The hands move back and forth against each other in short, repetitive strokes, driven mainly by wrist and forearm motion. The motion is rhythmic and alternating, with one hand sliding slightly forward as the other moves backward.\n\nInteraction context: The palms remain in close contact, creating a symmetrical hand-to-hand interaction near the body’s midline. No external object is involved; the action is defined by direct contact and friction between the two hands.",
+    "model": "gpt-5.5"
+  },
+  "34": {
+    "label_index": 34,
+    "class_name": "nod head or bow",
+    "description": "Body parts: The action primarily involves the neck and head joints, with the cervical spine flexing as the head moves downward and then returning upward. The upper torso, shoulders, and spine may remain mostly stable, though a bow can include forward bending at the waist and slight shoulder inclination.\n\nMotion pattern: The head follows a vertical forward-downward arc, lowering the chin toward the chest or ground, then lifting back to neutral. A nod is usually short and rhythmic, often repeated, while a bow is slower, deeper, and held briefly at the lowered position.\n\nInteraction context: The movement is generally centered and symmetric around the body’s midline, with no limb interaction required. In a bow, the torso may incline toward another person or direction, indicating greeting, respect, or acknowledgment.",
+    "model": "gpt-5.5"
+  },
+  "35": {
+    "label_index": 35,
+    "class_name": "shake head",
+    "description": "Body parts: The neck and cervical spine drive the motion, with the head, chin, nose, and ears moving as a unit while the shoulders and torso remain mostly stable.\n\nMotion pattern: The head rotates repeatedly left and right around the vertical neck axis in a quick side-to-side rhythm, often with small amplitude and alternating direction.\n\nInteraction context: The movement is largely symmetrical about the body’s midline, with no object interaction; the head shifts orientation relative to a fixed torso to signal refusal or disagreement.",
+    "model": "gpt-5.5"
+  },
+  "36": {
+    "label_index": 36,
+    "class_name": "wipe face",
+    "description": "Body parts: One or both hands, wrists, and elbows are actively raised toward the head, with the shoulder flexing to bring the forearm near the face. The head and neck may remain mostly upright or tilt slightly toward the wiping hand.\n\nMotion pattern: The hand moves in short, repeated strokes across the face, often sweeping horizontally or diagonally over the mouth, nose, cheek, or forehead area. The motion is rhythmic and localized, with elbow bending and wrist adjustments guiding the wiping path.\n\nInteraction context: The hand stays very close to or in contact with the facial region, creating a clear hand-to-face interaction. The movement may be asymmetric if one hand wipes, or symmetric if both hands cover and wipe the face together.",
+    "model": "gpt-5.5"
+  },
+  "37": {
+    "label_index": 37,
+    "class_name": "salute",
+    "description": "Body parts: The dominant arm is active, with the shoulder lifting, elbow bending, and wrist/hand moving toward the forehead or temple. The head, neck, torso, and opposite arm usually remain relatively stable and upright.\n\nMotion pattern: The hand travels upward in a controlled, direct path from the side or lower position to the brow area, then briefly holds before returning downward. The motion is crisp and purposeful, with a clear pause at the salute position.\n\nInteraction context: The action is typically asymmetric, involving one arm while the rest of the body maintains a formal posture. The hand aligns near the head without touching an object, often indicating greeting, respect, or military acknowledgment.",
+    "model": "gpt-5.5"
+  },
+  "38": {
+    "label_index": 38,
+    "class_name": "put the palms together",
+    "description": "Body parts: Both shoulders, elbows, wrists, and hand joints are active, with the upper arms lifting slightly and the forearms moving inward. The palms and fingers align as the wrists rotate to face each other.\n\nMotion pattern: The hands travel from separated positions toward the midline of the chest or face in a smooth, converging motion. Elbows bend and angle outward slightly while the palms meet and remain pressed together.\n\nInteraction context: The movement is bilaterally symmetric, with both hands mirroring each other around the body’s central vertical axis. The interaction occurs between the two palms, forming direct hand-to-hand contact without an external object.",
+    "model": "gpt-5.5"
+  },
+  "39": {
+    "label_index": 39,
+    "class_name": "cross hands in front",
+    "description": "Body parts: The shoulders, elbows, wrists, and hands are the primary joints involved, with both arms moving across the torso. The upper arms rotate inward while the forearms and hands travel toward the opposite side of the body.\n\nMotion pattern: Both arms move from a more open or neutral position inward and forward, crossing at the wrists or forearms in front of the chest or abdomen. The motion is typically synchronized and symmetrical, with a smooth converging trajectory toward the body’s midline.\n\nInteraction context: The hands or forearms overlap in front of the torso, forming an X-like spatial relationship. There is no object interaction, and the action is defined by the self-contact or near-contact between the two arms.",
+    "model": "gpt-5.5"
+  },
+  "40": {
+    "label_index": 40,
+    "class_name": "sneeze or cough",
+    "description": "Body parts: The head, neck, upper spine, shoulders, elbows, wrists, and hands are most active, with the torso and chest contributing to the forceful expulsion. The jaw and face may tilt forward while one or both hands move toward the mouth or nose.\n\nMotion pattern: The upper body typically contracts forward in a quick, sudden jerk, with the head and shoulders dipping and the chest compressing. The motion is brief and impulsive, often followed by a small recovery as the head and torso return upright.\n\nInteraction context: One or both hands may cover the mouth or nose, creating a close spatial interaction between the wrists, hands, and face. The action is usually centered and self-contained, with mostly symmetric shoulder movement but potentially asymmetric arm use if only one hand covers the face.",
+    "model": "gpt-5.5"
+  },
+  "41": {
+    "label_index": 41,
+    "class_name": "staggering",
+    "description": "Body parts: The ankles, knees, hips, and pelvis are highly involved as the legs alternately lose and regain support. The torso, shoulders, arms, and head also react, with the arms often lifting or spreading to maintain balance.\n\nMotion pattern: The movement is irregular and unstable, with short uneven steps, lateral swaying, and abrupt shifts of weight from one foot to the other. The torso may tilt forward, backward, or sideways while the knees flex and extend inconsistently.\n\nInteraction context: The body shows asymmetrical posture and unsteady alignment, with the center of mass repeatedly drifting outside the base of support. There is typically no object interaction, but the person may appear to compensate as if resisting a fall or recovering balance.",
+    "model": "gpt-5.5"
+  },
+  "42": {
+    "label_index": 42,
+    "class_name": "falling",
+    "description": "Body parts: The head, neck, spine, pelvis/hips, knees, ankles, shoulders, elbows, and wrists are actively involved as the whole body loses support. The arms often extend or flail for balance while the legs buckle or lift as the torso tips.\n\nMotion pattern: The body rapidly transitions from upright to a lower or horizontal posture, with the center of mass dropping downward and forward, backward, or sideways. The motion is abrupt and accelerating, often followed by impact and a brief collapse or stillness.\n\nInteraction context: The skeleton shows a loss of stable alignment between the feet and pelvis, with the upper body moving outside the base of support. Limb motion may be asymmetric as one side reaches toward the ground or an object to brace the fall.",
+    "model": "gpt-5.5"
+  },
+  "43": {
+    "label_index": 43,
+    "class_name": "touch head headache",
+    "description": "Body parts: One or both hands, wrists, elbows, and shoulders are active as the hand moves to the head. The neck and head may tilt slightly, with the upper torso stabilizing the posture.\n\nMotion pattern: The arm lifts upward and inward toward the forehead, temple, or side of the head, often with a slow, deliberate motion. The hand may press or hold the head with minimal repeated movement.\n\nInteraction context: The hand makes direct contact with the head, typically near the temple or forehead to indicate pain. The pose may be asymmetric if only one hand is used, or symmetric if both hands hold the head.",
+    "model": "gpt-5.5"
+  },
+  "44": {
+    "label_index": 44,
+    "class_name": "touch chest chest pain",
+    "description": "Body parts: One or both hands are actively involved, with shoulder, elbow, wrist, and finger joints guiding the hand toward the chest. The torso, sternum/ribcage area, and upper spine are key segments, often with the head and neck slightly inclined downward toward the chest.\n\nMotion pattern: The hand moves inward from a relaxed or raised position toward the center or left side of the chest, usually in a short, direct trajectory. The motion may be slow, tense, or repetitive, with the palm or fingers pressing, clutching, or rubbing the chest to indicate discomfort.\n\nInteraction context: The hand makes direct contact with the chest, often asymmetrically on one side, suggesting localized pain or distress. The body may hunch forward slightly, with protective posture and reduced arm movement emphasizing the chest as the focus of interaction.",
+    "model": "gpt-5.5"
+  },
+  "45": {
+    "label_index": 45,
+    "class_name": "touch back backache",
+    "description": "Body parts: One or both hands move toward the lower or middle back, with active involvement of the shoulders, elbows, wrists, and spine. The torso, pelvis, and back region are emphasized, often with slight bending or stiffness.\n\nMotion pattern: The arm reaches backward in a curved trajectory, the elbow flexing as the hand contacts or presses the back. The motion may be slow and cautious, with small rubbing, holding, or patting movements suggesting discomfort.\n\nInteraction context: The hand maintains close contact with the back, typically on the same side or across the body depending on flexibility. The posture is often asymmetrical, with the torso slightly twisted or bent to accommodate the reach.",
+    "model": "gpt-5.5"
+  },
+  "46": {
+    "label_index": 46,
+    "class_name": "touch neck neck ache",
+    "description": "Body parts: One or both hands, especially the fingers and wrist joints, move toward the neck region, involving the elbow and shoulder joints to raise the arm. The head, cervical spine, and upper torso may also be engaged, with slight neck flexion or tilt.\n\nMotion pattern: The hand travels upward from the side or front of the body to the neck, then makes contact and may press, rub, or hold the neck area in a slow, discomfort-driven motion. Movements are typically small, repetitive, and localized around the neck.\n\nInteraction context: The hand interacts directly with the neck, often on one side or at the back of the neck, suggesting self-touch due to pain or stiffness. The posture may be asymmetric, with the head leaning toward or away from the touching hand.",
+    "model": "gpt-5.5"
+  },
+  "47": {
+    "label_index": 47,
+    "class_name": "nausea or vomiting condition",
+    "description": "Body parts: Head, neck, upper spine, shoulders, elbows, wrists, and hands are most active, with the torso and abdomen involved through forward flexion. One or both hands may move toward the mouth or stomach area.\n\nMotion pattern: The head and trunk bend forward in repeated, abrupt contractions, often with slight shaking or jerking of the shoulders. Hands may rise quickly to cover the mouth, while the torso curls inward and then partially recovers between heaving motions.\n\nInteraction context: The body posture is typically asymmetric if one hand supports the mouth or abdomen, though both shoulders may hunch forward together. The person may lean toward an imagined sink, ground, or container, with the upper body oriented downward and forward.",
+    "model": "gpt-5.5"
+  },
+  "48": {
+    "label_index": 48,
+    "class_name": "use a fan with hand or paper feeling warm",
+    "description": "Body parts: One arm is primarily active, with the shoulder lifting slightly, the elbow flexing and extending, and the wrist/hand holding or mimicking a fan or paper. The head, neck, and upper torso may orient toward the hand or airflow, with the face acting as the target area.\n\nMotion pattern: The hand performs repeated back-and-forth fanning strokes in short arcs, driven by wrist flicks and small elbow movements. The motion is rhythmic and directed toward the face or upper chest to create airflow.\n\nInteraction context: The action is typically asymmetric, with one hand holding a fan or paper while the other arm remains relaxed or stabilizes the body. The moving object stays close to the face, positioned in front of or slightly beside the head to indicate cooling from feeling warm.",
+    "model": "gpt-5.5"
+  },
+  "49": {
+    "label_index": 49,
+    "class_name": "punching or slapping other person",
+    "description": "Body parts: The shoulder, elbow, wrist, and hand of one arm are the primary active joints, with the torso, hips, and legs providing balance and rotational support. The head and upper body of the other person may react through neck, shoulder, or trunk displacement.\n\nMotion pattern: The striking arm rapidly extends or swings from a retracted position toward the other person, either in a straight forward punch or a lateral/arc-like slap. The motion is abrupt and high-velocity, often followed by quick recoil or arm lowering.\n\nInteraction context: Two people are positioned close enough for arm contact, with one person directing the hand or fist toward the other person’s upper body, head, or face region. The action is asymmetric, with one person initiating the strike and the other receiving or reacting to it.",
+    "model": "gpt-5.5"
+  },
+  "50": {
+    "label_index": 50,
+    "class_name": "kicking other person",
+    "description": "Body parts: The kicking leg uses the hip, knee, ankle, and foot, while the support leg stabilizes through the hip, knee, and ankle. The pelvis, torso, shoulders, and arms adjust for balance.\n\nMotion pattern: The kicking leg lifts, swings forward or sideways, extends toward the target, then retracts or returns to the ground. The movement is quick and forceful, with weight shifting onto the support leg.\n\nInteraction context: One person directs the foot toward another person’s body, with the target positioned within leg reach. The action is asymmetric, involving one active kicker and one receiving person.",
+    "model": "gpt-5.5"
+  },
+  "51": {
+    "label_index": 51,
+    "class_name": "pushing other person",
+    "description": "Body parts: The shoulders, elbows, wrists, and hands are the primary active joints, with the torso, hips, knees, and ankles stabilizing the body. The arms extend forward from the chest toward the other person, often with both hands involved.\n\nMotion pattern: The movement typically begins with a slight backward preparation or weight shift, followed by a forward thrust of the arms and upper body. The elbows extend, shoulders flex forward, and body weight transfers from the rear foot to the front foot in a quick, forceful rhythm.\n\nInteraction context: The actor faces the other person at close range, with the hands contacting the other person’s chest, shoulders, or upper body. The motion is directed outward from the actor toward the other person, often causing the other person’s torso to move backward.",
+    "model": "gpt-5.5"
+  },
+  "52": {
+    "label_index": 52,
+    "class_name": "pat on back of other person",
+    "description": "Body parts: The active person primarily uses one arm, involving the shoulder, elbow, wrist, and hand, while the torso may lean slightly forward. The receiving person’s upper back, shoulders, and torso remain mostly stable, with possible small reactions in the spine or shoulders.\n\nMotion pattern: The active hand moves forward toward the other person’s upper back, makes brief contact, then retracts slightly in a repeated tapping rhythm. The motion is usually short, controlled, and directed horizontally or slightly downward from the patter’s shoulder toward the receiver’s back.\n\nInteraction context: Two people stand or sit close together, with the active person positioned beside or behind the receiver. The interaction is asymmetric, with one person initiating repeated hand-to-back contact while the other person remains largely passive.",
+    "model": "gpt-5.5"
+  },
+  "53": {
+    "label_index": 53,
+    "class_name": "point finger at the other person",
+    "description": "Body parts: The shoulder, elbow, wrist, and index finger of one arm are actively engaged, with the hand shaped into a pointing gesture while the other fingers remain flexed. The torso, head, and gaze may orient toward the target person to support the gesture.\n\nMotion pattern: The pointing arm extends forward or diagonally outward from the body, with the elbow straightening and the wrist aligning the finger toward the other person. The motion is usually direct and brief, often ending in a held pointing pose.\n\nInteraction context: The gesture is directed toward another person positioned in front of or to the side of the actor, creating a clear line from the shoulder through the fingertip to the target. The action is asymmetric, dominated by one arm while the rest of the body stabilizes and faces the interaction partner.",
+    "model": "gpt-5.5"
+  },
+  "54": {
+    "label_index": 54,
+    "class_name": "hugging other person",
+    "description": "Body parts: Shoulders, elbows, wrists, and hands are the primary active joints, with the arms lifting and wrapping around the other person’s upper back or shoulders. The torso, spine, neck, and head may lean forward, while hips and legs stabilize the body.\n\nMotion pattern: Both arms move outward then forward and inward in a curved trajectory, closing around the other person in a smooth, coordinated motion. The movement is usually moderate and gentle, followed by a brief still phase with slight tightening or rocking.\n\nInteraction context: The two bodies move into close frontal or side-facing proximity, with overlapping arm positions around each other’s torso or shoulders. The action is typically symmetrical or reciprocal, with both people leaning inward and maintaining body contact.",
+    "model": "gpt-5.5"
+  },
+  "55": {
+    "label_index": 55,
+    "class_name": "giving something to other person",
+    "description": "Body parts: The shoulder, elbow, wrist, and hand of the giving arm are most active, with the torso and head often oriented toward the other person. The opposite arm may remain near the body or assist in holding/stabilizing the object.\n\nMotion pattern: The giving hand moves forward from near the torso toward the recipient in a smooth reaching trajectory, usually with elbow extension and slight shoulder flexion. The motion may slow or pause briefly at full extension to allow the transfer.\n\nInteraction context: The giver faces or turns toward the recipient, with the extended hand entering the shared space between them. The recipient’s hand or body is positioned opposite the giver’s reaching arm, creating a coordinated hand-to-hand object transfer.",
+    "model": "gpt-5.5"
+  },
+  "56": {
+    "label_index": 56,
+    "class_name": "touch other person pocket",
+    "description": "Body parts: The reaching person primarily uses one shoulder, elbow, wrist, and hand, with the torso slightly leaning or rotating toward the other person. The other person’s hip/pelvis region and upper leg area are the target, corresponding to the pocket location.\n\nMotion pattern: The reaching arm extends downward and forward or sideways toward the other person’s pocket, with the elbow partially straightening and the wrist/hand making a brief contact or tapping motion. The movement is usually small, deliberate, and localized, followed by a slight retraction of the hand.\n\nInteraction context: Two people stand close together, with the reaching person positioned beside or slightly in front of the other person. The action is asymmetric, involving one person’s hand interacting with the other person’s pocket area near the hip or thigh.",
+    "model": "gpt-5.5"
+  },
+  "57": {
+    "label_index": 57,
+    "class_name": "handshaking",
+    "description": "Body parts: The shoulder, elbow, wrist, and hand of the extended arm are most active, with the torso and head oriented toward the other person. The opposite arm usually remains relaxed near the side while the legs provide a stable stance.\n\nMotion pattern: One arm reaches forward from the shoulder, the elbow slightly bends, and the hand aligns vertically to grasp the other person’s hand. After contact, the joined hands move up and down in a short, rhythmic oscillation before releasing.\n\nInteraction context: The action involves two people facing each other at close distance, with their extended hands meeting at midline between their bodies. The motion is complementary and synchronized, as both participants maintain the grip and move the connected hands together.",
+    "model": "gpt-5.5"
+  },
+  "58": {
+    "label_index": 58,
+    "class_name": "walking towards each other",
+    "description": "Body parts: The hips, knees, ankles, and feet drive alternating stepping motions, while the shoulders and elbows swing naturally in opposition to the legs. The torso and head remain upright and oriented toward the other person.\n\nMotion pattern: Each person advances forward with a rhythmic left-right gait, shifting weight from one foot to the other as the legs flex and extend. Their trajectories move along converging paths, reducing the distance between them.\n\nInteraction context: The two skeletons face each other and approach symmetrically from opposite directions. Their movement suggests mutual awareness, with bodies aligned toward an impending meeting or passing interaction.",
+    "model": "gpt-5.5"
+  },
+  "59": {
+    "label_index": 59,
+    "class_name": "walking apart from each other",
+    "description": "Body parts: The hips, knees, ankles, and feet of both people drive alternating stepping, while the pelvis shifts weight side to side. Arms swing naturally at the shoulders and elbows in opposition to the legs for balance.\n\nMotion pattern: Each person follows a regular walking gait with alternating leg strides and rhythmic heel-to-toe foot placement. Their trajectories move in opposite or diverging directions, increasing the distance between them over time.\n\nInteraction context: The two skeletons begin relatively close together and progressively separate as they walk away from one another. Their motions may appear roughly symmetric if both walk at similar speed, but orientation and path direction are opposite or outward-facing.",
+    "model": "gpt-5.5"
+  }
+}
