@@ -144,9 +144,7 @@ class SGTFModule(nn.Module):
         num_joints   : V joints.
         d_h          : Attention projection dimension.
         mlp_hidden   : Hidden dim in the GAP MLP.
-        fusion_alpha : Weight on ``A_gap``. If ``learn_fusion_scalars=False`` (default),
-                       stored as a fixed buffer (no grad). Otherwise initial value for
-                       ``nn.Parameter``.
+        fusion_alpha : Initial weight on ``A_gap``.
         fusion_beta  : Weight on ``A_ljp`` (same semantics as ``fusion_alpha``).
         learn_fusion_scalars: If True, ``alpha``/``beta`` are trainable ``nn.Parameter``.
     """
@@ -161,7 +159,7 @@ class SGTFModule(nn.Module):
                  mlp_hidden: int = 256,
                  fusion_alpha: float = 0.5,
                  fusion_beta: float = 0.5,
-                 learn_fusion_scalars: bool = False):
+                 learn_fusion_scalars: bool = True):
         super().__init__()
 
         # register Aphy as non-trainable buffer (one tensor per subset)
@@ -171,7 +169,8 @@ class SGTFModule(nn.Module):
         self.gap = GAPModule(clip_dim, feat_channels, d_h, mlp_hidden)
         self.ljp_cache = LJPCache(num_classes, num_joints)
 
-        # A_hat = A_phy + alpha*A_gap + beta*A_ljp  (default: fixed scalars, stable at cold start)
+        # A_hat = A_phy + alpha*A_gap + beta*A_ljp.
+        # Alpha and beta are trainable by default, matching the paper setting.
         a = torch.tensor([fusion_alpha], dtype=torch.float32)
         b = torch.tensor([fusion_beta], dtype=torch.float32)
         if learn_fusion_scalars:

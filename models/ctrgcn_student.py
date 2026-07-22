@@ -24,12 +24,14 @@ class CTRGCNBlock_Student(nn.Module):
     """
 
     def __init__(self, in_channels, out_channels, A,
-                 stride=1, residual=True, tcn_dropout=0):
+                 stride=1, residual=True,
+                 kernel_size=5, dilations=(1, 2), tcn_dropout=0):
         super().__init__()
         self.gcn = unit_ctrgcn(in_channels, out_channels, A)
         self.tcn = MSTCN(out_channels, out_channels,
+                         kernel_size=kernel_size,
                          stride=stride,
-                         dilations=[1, 2],
+                         dilations=list(dilations),
                          residual=False,
                          tcn_dropout=tcn_dropout)
         self.relu = nn.ReLU(inplace=True)

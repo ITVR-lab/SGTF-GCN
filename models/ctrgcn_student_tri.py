@@ -11,7 +11,8 @@ from ...gcns.utils.msg3d_utils import MSTCN
 
 class CTRGCNBlock_Student_Tri(nn.Module):
     def __init__(self, in_channels, out_channels, A,
-                 stride=1, residual=True, tcn_dropout=0):
+                 stride=1, residual=True,
+                 kernel_size=5, dilations=(1, 2), tcn_dropout=0):
         super().__init__()
         V = A.shape[-1]
         self.gcn = unit_ctrgcn(in_channels, out_channels, A)
@@ -27,8 +28,11 @@ class CTRGCNBlock_Student_Tri(nn.Module):
         )
         self.bn_fusion = nn.BatchNorm2d(out_channels)
         self.tcn = MSTCN(out_channels, out_channels,
-                         stride=stride, dilations=[1, 2],
-                         residual=False, tcn_dropout=tcn_dropout)
+                         kernel_size=kernel_size,
+                         stride=stride,
+                         dilations=list(dilations),
+                         residual=False,
+                         tcn_dropout=tcn_dropout)
         self.relu = nn.ReLU(inplace=True)
         if not residual:
             self.residual = lambda x: 0

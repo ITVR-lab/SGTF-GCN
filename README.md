@@ -31,17 +31,19 @@ Inference
 ## Repository Structure
 
 ```
-sgtfgcn_release/
+SGTF-GCN/
  README.md
 
  models/                              # Core model code
    ├── sgtf_module.py                   # SGTF module: GAPModule + LJPModule + topology fusion
+   ├── sgtf_module_v2.py                # Decoupled SGTF module for the tri-modal variant
    ├── sgtfgcn_recognizer.py            # End-to-end recognizer (teacher + student + TKD loss)
    ├── trisgtfgcn_recognizer.py         # Tri-modal (J/B/JM) recognizer variant
    ├── ctrgcn_teacher.py                # Teacher backbone (CTR-GCN + SGTF hooks)
    ├── ctrgcn_teacher_tri.py            # Tri-modal teacher backbone
    ├── ctrgcn_student.py                # Student backbone
    ├── ctrgcn_student_tri.py            # Tri-modal student backbone
+   ├── unit_ctrgcn_teacher_tri.py       # Tri-modal teacher GCN unit
    └── ctrgcn_kd.py                     # KD utility wrapper
 
  priors/                              # Semantic prior generation & loading
@@ -54,7 +56,7 @@ sgtfgcn_release/
        └── ljp_cache.pt                 # Pre-built LJP adjacency   [60, 25, 25] (float32)
 
  configs/                             # Example training configs (PySKL format)
-    ├── sgtfgcn_ntu60_xsub_j.py          # NTU60 X-Sub, joint stream
+    ├── sgtfgcn_ntu60_xsub_j.py         # NTU60 X-Sub, joint stream
     ├── sgtfgcn_ntu60_xsub_j_gpt4o.py   # NTU60 X-Sub, joint + GPT-4o descriptions
     ├── sgtfgcn_ucf101_hrnet_j.py        # UCF101, HRNet joint stream
     └── trisgtfgcn_ntu60_xsub_j.py       # NTU60 X-Sub, tri-modal fusion
@@ -69,8 +71,7 @@ We provide pre-built caches for NTU60 (60 classes) in `priors/cache/` — you ca
 
 ### Step 1 — Generate GPT Action Descriptions
 
-Use `priors/build_semantic_cache.py` to query an LLM for structured descriptions of each action class.  
-The output is saved to `priors/cache/gpt4o_descriptions.json`. Each entry contains:
+From the PySKL project root, run `gen_ntu60_gap_cache.py` to query GPT-4o and save structured descriptions to `priors/cache/gpt4o_descriptions.json`. Each entry contains:
 
 ```json
 "0": {
@@ -81,25 +82,26 @@ The output is saved to `priors/cache/gpt4o_descriptions.json`. Each entry contai
 }
 ```
 
+```bash
+python priors/gen_ntu60_gap_cache.py
+```
+
 ### Step 2 — Build the LJP Cache (BERT embeddings → 25×25 adjacency)
 
 ```bash
 python priors/build_semantic_cache.py \
-    --desc_json  priors/cache/gpt4o_descriptions.json \
-    --out_ljp    data/semantic_cache/ntu60/ljp_cache.pt \
-    --num_joints 25
+    --dataset nturgb+d \
+    --save_dir priors/cache \
+    --bert_dir data/hf_models/bert-base-uncased \
+    --local_files_only \
+    --skip_gap
 ```
 
 Output: `ljp_cache.pt` — shape `[K, 25, 25]`.
 
 ### Step 3 — Build the GAP Cache (CLIP text embeddings)
 
-```bash
-python priors/gen_ntu60_gap_cache.py \
-    --desc_json  priors/cache/gpt4o_descriptions.json \
-    --out_gap    data/semantic_cache/ntu60/gap_cache.pt \
-    --clip_model ViT-B/32
-```
+`gen_ntu60_gap_cache.py` also encodes the GPT-4o descriptions with CLIP ViT-B/32 and saves `gap_cache.pt` to `priors/cache/`.
 
 Output: `gap_cache.pt` — shape `[K, 512]`.
 
@@ -115,25 +117,29 @@ Output: `gap_cache.pt` — shape `[K, 512]`.
 
 ## Training
 
-Specify cache paths in your config file:
+Copy this repository into your PySKL project (e.g. as `sgtfgcn_release/`), then specify cache paths in your config file:
 
 ```python
 # inside your .py config
 semantic_cache = dict(
-    gap_cache_path     = 'data/semantic_cache/ntu60/gap_cache.pt',
-    ljp_adj_cache_path = 'data/semantic_cache/ntu60/ljp_cache.pt',
+    gap_cache_path     = 'sgtfgcn_release/priors/cache/gap_cache.pt',
+    ljp_adj_cache_path = 'sgtfgcn_release/priors/cache/ljp_cache.pt',
 )
 ```
+
+### Paper Training Setting
+
+The released NTU60 configs follow the paper setting: 100 epochs, 5-epoch linear warm-up, step learning-rate decay at epochs 35 and 55, SGD with Nesterov momentum 0.9, weight decay 0.0004, 64-frame input sequences, and trainable topology-fusion scalars `alpha` and `beta` initialized to 0.5.
 
 Launch training with the PySKL runner:
 
 ```bash
 # Single GPU
-python tools/train.py configs/sgtfgcn_ntu60_xsub_j_gpt4o.py \
+python tools/train.py sgtfgcn_release/configs/sgtfgcn_ntu60_xsub_j_gpt4o.py \
     --work-dir work_dirs/sgtfgcn_ntu60_xsub
 
 # Distributed (8 GPUs)
-bash tools/dist_train.sh configs/sgtfgcn_ntu60_xsub_j_gpt4o.py 8
+bash tools/dist_train.sh sgtfgcn_release/configs/sgtfgcn_ntu60_xsub_j_gpt4o.py 8
 ```
 
 ### Loss Configuration
@@ -152,7 +158,7 @@ bash tools/dist_train.sh configs/sgtfgcn_ntu60_xsub_j_gpt4o.py 8
 Only the **student** network runs at test time — no CLIP or BERT required:
 
 ```bash
-python tools/test.py configs/sgtfgcn_ntu60_xsub_j_gpt4o.py \
+python tools/test.py sgtfgcn_release/configs/sgtfgcn_ntu60_xsub_j_gpt4o.py \
     work_dirs/sgtfgcn_ntu60_xsub/best.pth
 ```
 
@@ -185,7 +191,7 @@ If you find this work useful, please cite our paper:
   author  = {[Authors]},
   journal = {[Venue]},
   year    = {2025},
-  note    = {Code: https://github.com/[repo]}
+  note    = {Code: https://github.com/ITVR-lab/SGTF-GCN}
 }
 ```
 
@@ -195,7 +201,7 @@ If you find this work useful, please cite our paper:
 
 ## License
 
-This project is released under the [Apache 2.0 License](../LICENSE).
+This project is released under the Apache 2.0 License.
 
 ---
 

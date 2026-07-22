@@ -3,15 +3,16 @@ Training config for SGTF-GCN on NTU RGB+D 60 X-Sub (joint stream).
 
 Two-step usage:
   1. Build caches (once). Offline BERT (no HuggingFace download):
-       python configs/sgtfgcn/build_semantic_cache.py \
-           --dataset nturgb+d --save_dir data/semantic_cache/ntu60 \
-           --bert_dir data/hf_models/bert-base-uncased --local_files_only
+       python sgtfgcn_release/priors/gen_ntu60_gap_cache.py
+       python sgtfgcn_release/priors/build_semantic_cache.py \
+           --dataset nturgb+d --save_dir sgtfgcn_release/priors/cache \
+           --bert_dir data/hf_models/bert-base-uncased --local_files_only --skip_gap
 
      (Paths are relative to repo root ``pyskl-main``. Adjust ``--bert_dir`` if your
      snapshot lives elsewhere.)
 
   2. Train:
-       bash tools/dist_train.sh configs/sgtfgcn/sgtfgcn_ntu60_xsub_j.py 4
+       bash tools/dist_train.sh sgtfgcn_release/configs/sgtfgcn_ntu60_xsub_j.py 4
 
 The recognizer (SGTFGCNRecognizer) loads the caches at runtime via
 a custom hook (or you can call model.set_gap_cache / model.set_ljp_cache
@@ -21,8 +22,8 @@ directly in your training script).
 # -----------------------------------------------------------------------
 # Paths to pre-computed semantic caches (build with build_semantic_cache.py)
 # -----------------------------------------------------------------------
-gap_cache_path = 'data/semantic_cache/ntu60/gap_cache.pt'
-ljp_cache_path = 'data/semantic_cache/ntu60/ljp_cache.pt'
+gap_cache_path = 'sgtfgcn_release/priors/cache/gap_cache.pt'
+ljp_cache_path = 'sgtfgcn_release/priors/cache/ljp_cache.pt'
 
 semantic_cache = dict(
     gap_cache_path=gap_cache_path,
@@ -46,7 +47,7 @@ model = dict(
         sgtf_mlp_hidden=256,
         fusion_alpha=0.5,
         fusion_beta=0.5,
-        learn_fusion_scalars=False,
+        learn_fusion_scalars=True,
         num_person=2,
     ),
 
@@ -83,7 +84,7 @@ ann_file = 'data/nturgbd/ntu60_3danno.pkl'
 train_pipeline = [
     dict(type='PreNormalize3D'),
     dict(type='GenSkeFeat', dataset='nturgb+d', feats=['j']),
-    dict(type='UniformSample', clip_len=100),
+    dict(type='UniformSample', clip_len=64),
     dict(type='PoseDecode'),
     dict(type='FormatGCNInput', num_person=2),
     dict(type='Collect', keys=['keypoint', 'label'], meta_keys=[]),
@@ -92,7 +93,7 @@ train_pipeline = [
 val_pipeline = [
     dict(type='PreNormalize3D'),
     dict(type='GenSkeFeat', dataset='nturgb+d', feats=['j']),
-    dict(type='UniformSample', clip_len=100, num_clips=1),
+    dict(type='UniformSample', clip_len=64, num_clips=1),
     dict(type='PoseDecode'),
     dict(type='FormatGCNInput', num_person=2),
     dict(type='Collect', keys=['keypoint', 'label'], meta_keys=[]),
@@ -101,7 +102,7 @@ val_pipeline = [
 test_pipeline = [
     dict(type='PreNormalize3D'),
     dict(type='GenSkeFeat', dataset='nturgb+d', feats=['j']),
-    dict(type='UniformSample', clip_len=100, num_clips=10),
+    dict(type='UniformSample', clip_len=64, num_clips=10),
     dict(type='PoseDecode'),
     dict(type='FormatGCNInput', num_person=2),
     dict(type='Collect', keys=['keypoint', 'label'], meta_keys=[]),
@@ -111,11 +112,8 @@ data = dict(
     videos_per_gpu=16,
     workers_per_gpu=2,
     test_dataloader=dict(videos_per_gpu=1),
-    train=dict(
-        type='RepeatDataset',
-        times=5,
-        dataset=dict(type=dataset_type, ann_file=ann_file,
-                     pipeline=train_pipeline, split='xsub_train')),
+    train=dict(type=dataset_type, ann_file=ann_file,
+               pipeline=train_pipeline, split='xsub_train'),
     val=dict(type=dataset_type, ann_file=ann_file,
              pipeline=val_pipeline, split='xsub_val'),
     test=dict(type=dataset_type, ann_file=ann_file,
@@ -125,11 +123,17 @@ data = dict(
 # -----------------------------------------------------------------------
 # Optimizer & LR schedule
 # -----------------------------------------------------------------------
-optimizer = dict(type='SGD', lr=0.1, momentum=0.9, weight_decay=0.0005,
+optimizer = dict(type='SGD', lr=0.1, momentum=0.9, weight_decay=0.0004,
                  nesterov=True)
 optimizer_config = dict(grad_clip=None)
-lr_config = dict(policy='CosineAnnealing', min_lr=0, by_epoch=False)
-total_epochs = 16
+lr_config = dict(
+    policy='step',
+    step=[35, 55],
+    warmup='linear',
+    warmup_by_epoch=True,
+    warmup_iters=5,
+    warmup_ratio=0.1)
+total_epochs = 100
 checkpoint_config = dict(interval=1)
 evaluation = dict(interval=1, metrics=['top_k_accuracy'])
 log_config = dict(interval=100, hooks=[dict(type='TextLoggerHook')])

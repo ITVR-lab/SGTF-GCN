@@ -1,5 +1,5 @@
-gap_cache_path = 'data/semantic_cache/ntu60/gap_cache.pt'
-ljp_cache_path = 'data/semantic_cache/ntu60/ljp_cache.pt'
+gap_cache_path = 'sgtfgcn_release/priors/cache/gap_cache.pt'
+ljp_cache_path = 'sgtfgcn_release/priors/cache/ljp_cache.pt'
 
 semantic_cache = dict(
     gap_cache_path=gap_cache_path,
@@ -50,7 +50,7 @@ ann_file = 'data/nturgbd/ntu60_3danno.pkl'
 train_pipeline = [
     dict(type='PreNormalize3D'),
     dict(type='GenSkeFeat', dataset='nturgb+d', feats=['j']),
-    dict(type='UniformSample', clip_len=100),
+    dict(type='UniformSample', clip_len=64),
     dict(type='PoseDecode'),
     dict(type='FormatGCNInput', num_person=2),
     dict(type='Collect', keys=['keypoint', 'label'], meta_keys=[]),
@@ -59,7 +59,7 @@ train_pipeline = [
 val_pipeline = [
     dict(type='PreNormalize3D'),
     dict(type='GenSkeFeat', dataset='nturgb+d', feats=['j']),
-    dict(type='UniformSample', clip_len=100, num_clips=1),
+    dict(type='UniformSample', clip_len=64, num_clips=1),
     dict(type='PoseDecode'),
     dict(type='FormatGCNInput', num_person=2),
     dict(type='Collect', keys=['keypoint', 'label'], meta_keys=[]),
@@ -68,7 +68,7 @@ val_pipeline = [
 test_pipeline = [
     dict(type='PreNormalize3D'),
     dict(type='GenSkeFeat', dataset='nturgb+d', feats=['j']),
-    dict(type='UniformSample', clip_len=100, num_clips=10),
+    dict(type='UniformSample', clip_len=64, num_clips=10),
     dict(type='PoseDecode'),
     dict(type='FormatGCNInput', num_person=2),
     dict(type='Collect', keys=['keypoint', 'label'], meta_keys=[]),
@@ -78,21 +78,24 @@ data = dict(
     videos_per_gpu=16,
     workers_per_gpu=2,
     test_dataloader=dict(videos_per_gpu=1),
-    train=dict(
-        type='RepeatDataset',
-        times=5,
-        dataset=dict(type=dataset_type, ann_file=ann_file,
-                     pipeline=train_pipeline, split='xsub_train')),
+    train=dict(type=dataset_type, ann_file=ann_file,
+               pipeline=train_pipeline, split='xsub_train'),
     val=dict(type=dataset_type, ann_file=ann_file,
              pipeline=val_pipeline, split='xsub_val'),
     test=dict(type=dataset_type, ann_file=ann_file,
               pipeline=test_pipeline, split='xsub_val'),
 )
 
-optimizer = dict(type='SGD', lr=0.1, momentum=0.9, weight_decay=0.0005, nesterov=True)
+optimizer = dict(type='SGD', lr=0.1, momentum=0.9, weight_decay=0.0004, nesterov=True)
 optimizer_config = dict(grad_clip=None)
-lr_config = dict(policy='CosineAnnealing', min_lr=0, by_epoch=False)
-total_epochs = 16
+lr_config = dict(
+    policy='step',
+    step=[35, 55],
+    warmup='linear',
+    warmup_by_epoch=True,
+    warmup_iters=5,
+    warmup_ratio=0.1)
+total_epochs = 100
 checkpoint_config = dict(interval=1)
 evaluation = dict(interval=1, metrics=['top_k_accuracy'])
 log_config = dict(interval=100, hooks=[dict(type='TextLoggerHook')])

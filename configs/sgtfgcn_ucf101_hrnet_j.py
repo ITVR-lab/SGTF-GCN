@@ -2,13 +2,13 @@
 SGTF-GCN (teacher-student KD) on UCF101, HRNet 2D keypoints (COCO 17, joint).
 
 Prerequisites:
-  1. python configs/sgtfgcn/build_semantic_cache.py \\
+  1. python sgtfgcn_release/priors/build_semantic_cache.py \\
          --dataset ucf101 --ann_file data/ucf101/ucf101_hrnet.pkl \\
          --save_dir data/semantic_cache/ucf101 \\
          --bert_dir <local bert-base-uncased> --local_files_only
 
   2. Train (from repo root, mmcv + CUDA env):
-       bash tools/dist_train.sh configs/sgtfgcn/sgtfgcn_ucf101_hrnet_j.py 1
+       bash tools/dist_train.sh sgtfgcn_release/configs/sgtfgcn_ucf101_hrnet_j.py 1
 """
 
 ann_file = 'data/ucf101/ucf101_hrnet.pkl'
@@ -37,7 +37,7 @@ model = dict(
         sgtf_mlp_hidden=256,
         fusion_alpha=0.5,
         fusion_beta=0.5,
-        learn_fusion_scalars=False,
+        learn_fusion_scalars=True,
         num_person=2,
     ),
     student_backbone=dict(
@@ -62,7 +62,7 @@ dataset_type = 'PoseDataset'
 train_pipeline = [
     dict(type='PreNormalize2D'),
     dict(type='GenSkeFeat', dataset='coco', feats=['j']),
-    dict(type='UniformSample', clip_len=100),
+    dict(type='UniformSample', clip_len=64),
     dict(type='PoseDecode'),
     dict(type='FormatGCNInput', num_person=2),
     dict(type='Collect', keys=['keypoint', 'label'], meta_keys=[]),
@@ -71,7 +71,7 @@ train_pipeline = [
 val_pipeline = [
     dict(type='PreNormalize2D'),
     dict(type='GenSkeFeat', dataset='coco', feats=['j']),
-    dict(type='UniformSample', clip_len=100, num_clips=1),
+    dict(type='UniformSample', clip_len=64, num_clips=1),
     dict(type='PoseDecode'),
     dict(type='FormatGCNInput', num_person=2),
     dict(type='Collect', keys=['keypoint', 'label'], meta_keys=[]),
@@ -80,7 +80,7 @@ val_pipeline = [
 test_pipeline = [
     dict(type='PreNormalize2D'),
     dict(type='GenSkeFeat', dataset='coco', feats=['j']),
-    dict(type='UniformSample', clip_len=100, num_clips=10),
+    dict(type='UniformSample', clip_len=64, num_clips=10),
     dict(type='PoseDecode'),
     dict(type='FormatGCNInput', num_person=2),
     dict(type='Collect', keys=['keypoint', 'label'], meta_keys=[]),
@@ -92,13 +92,10 @@ data = dict(
     workers_per_gpu=2,
     test_dataloader=dict(videos_per_gpu=1),
     train=dict(
-        type='RepeatDataset',
-        times=5,
-        dataset=dict(
-            type=dataset_type,
-            ann_file=ann_file,
-            pipeline=train_pipeline,
-            split='train1')),
+        type=dataset_type,
+        ann_file=ann_file,
+        pipeline=train_pipeline,
+        split='train1'),
     val=dict(
         type=dataset_type,
         ann_file=ann_file,
@@ -111,11 +108,17 @@ data = dict(
         split='test1'),
 )
 
-optimizer = dict(type='SGD', lr=0.1, momentum=0.9, weight_decay=0.0005,
+optimizer = dict(type='SGD', lr=0.1, momentum=0.9, weight_decay=0.0004,
                  nesterov=True)
 optimizer_config = dict(grad_clip=None)
-lr_config = dict(policy='CosineAnnealing', min_lr=0, by_epoch=False)
-total_epochs = 16
+lr_config = dict(
+    policy='step',
+    step=[35, 55],
+    warmup='linear',
+    warmup_by_epoch=True,
+    warmup_iters=5,
+    warmup_ratio=0.1)
+total_epochs = 100
 checkpoint_config = dict(interval=1)
 evaluation = dict(interval=1, metrics=['top_k_accuracy'])
 log_config = dict(interval=100, hooks=[dict(type='TextLoggerHook')])

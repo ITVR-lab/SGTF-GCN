@@ -1,7 +1,7 @@
 import os, sys, json, time, pickle, torch
 import torch.nn.functional as F
 
-SAVE_DIR     = "data/semantic_cache/ntu60"
+SAVE_DIR     = "sgtfgcn_release/priors/cache"
 DESC_JSON    = os.path.join(SAVE_DIR, "gpt4o_descriptions.json")
 GAP_CACHE_PT = os.path.join(SAVE_DIR, "gap_cache.pt")
 DATASET_PKL  = "data/nturgbd/ntu60_3danno.pkl"
@@ -220,7 +220,7 @@ def verify_alignment(gap_cache, descriptions):
 def main():
     os.makedirs(SAVE_DIR, exist_ok=True)
     print("=" * 70)
-    print("Step 1: Generating NTU60 descriptions with GPT-5.5")
+    print("Step 1: Generating NTU60 descriptions with GPT-4o")
     print("=" * 70)
     existing = {}
     if os.path.exists(DESC_JSON):

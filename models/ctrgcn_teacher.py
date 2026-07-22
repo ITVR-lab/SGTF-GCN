@@ -22,12 +22,14 @@ class CTRGCNBlock_Teacher(nn.Module):
     """One spatio-temporal block for the teacher network."""
 
     def __init__(self, in_channels, out_channels, A,
-                 stride=1, residual=True, tcn_dropout=0):
+                 stride=1, residual=True,
+                 kernel_size=5, dilations=(1, 2), tcn_dropout=0):
         super().__init__()
         self.gcn = unit_ctrgcn_teacher(in_channels, out_channels, A)
         self.tcn = MSTCN(out_channels, out_channels,
+                         kernel_size=kernel_size,
                          stride=stride,
-                         dilations=[1, 2],
+                         dilations=list(dilations),
                          residual=False,
                          tcn_dropout=tcn_dropout)
         self.relu = nn.ReLU(inplace=True)
@@ -65,9 +67,9 @@ class CTRGCNTeacher(nn.Module):
         down_stages     : 时序下采样的 block 序号（1-indexed）。
         sgtf_d_h        : GAP 注意力投影维度。
         sgtf_mlp_hidden : GAP MLP 隐层维度。
-        fusion_alpha    : GAP 分支固定权重（默认；``learn_fusion_scalars=True`` 时为初值）。
-        fusion_beta     : LJP 分支固定权重（同上）。
-        learn_fusion_scalars: 是否训练 ``alpha``/``beta``（默认 False，使用固定系数）。
+        fusion_alpha    : GAP 分支可学习权重的初值。
+        fusion_beta     : LJP 分支可学习权重的初值。
+        learn_fusion_scalars: 是否训练 ``alpha``/``beta``（默认 True，与论文设置一致）。
         num_person      : 每样本人数（用于 data_bn）。
         pretrained      : 可选 checkpoint 路径。
         tcn_dropout     : TCN dropout。
@@ -86,7 +88,7 @@ class CTRGCNTeacher(nn.Module):
         sgtf_mlp_hidden=256,
         fusion_alpha=0.5,
         fusion_beta=0.5,
-        learn_fusion_scalars=False,
+        learn_fusion_scalars=True,
         num_person=2,
         pretrained=None,
         tcn_dropout=0,
