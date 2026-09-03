@@ -170,7 +170,7 @@ Built on top of [PySKL](https://github.com/kennymckormick/pyskl):
 
 ```bash
 pip install -r requirements.txt
-pip install -e .
+pip install -e.
 ```
 
 Additional dependencies for prior generation:
@@ -181,19 +181,7 @@ pip install openai clip transformers
 
 ---
 
-## Citation
 
-If you find this work useful, please cite our paper:
-
-```bibtex
-@article{sgtfgcn2025,
-  title   = {Semantics-Guided Topology Fusion for Skeleton-Based Action Recognition},
-  author  = {[Authors]},
-  journal = {[Venue]},
-  year    = {2025},
-  note    = {Code: https://github.com/ITVR-lab/SGTF-GCN}
-}
-```
 
 > **[Paper link and full citation will be updated upon acceptance.]**
 
